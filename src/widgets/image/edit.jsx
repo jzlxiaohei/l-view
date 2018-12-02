@@ -7,11 +7,6 @@ import ImageModel from './Model';
 @observer
 class ImageEdit extends React.Component {
 
-  constructor(props) {
-    super(props);
-    window.$model = this.props.model;
-  }
-
   static propTypes = {
     model: PropTypes.instanceOf(ImageModel),
   }

@@ -9,6 +9,9 @@
   "dependencies": {
     "@babel/runtime": "^7.1.5",
     "antd": "^3.10.9",
+    "draft-js": "^0.10.5",
+    "draft-js-export-html": "^1.2.0",
+    "draft-js-import-html": "^1.2.1",
     "eventemitter3": "^3.1.0",
     "lodash": "^4.17.11",
     "mobx": "^5.6.0",

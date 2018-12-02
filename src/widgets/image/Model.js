@@ -1,6 +1,6 @@
-import { observable, action } from 'mobx';
+import { action } from 'mobx';
 import BaseModel from  '../BaseModel';
-import _ from 'lodash';
+
 
 const cache = {};
 

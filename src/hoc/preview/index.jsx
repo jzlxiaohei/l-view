@@ -127,7 +127,6 @@ export default function previewHoc(OriginComponent) {
       const { clientX, clientY } = e;
       const width = clientX - this.lastResizeX;
       const height = clientY - this.lastResizeY;
-      console.log(width, height);
       model.assignStyle({
         width: this.lastWidth + width,
         height: this.lastHeight + height,
@@ -144,19 +143,22 @@ export default function previewHoc(OriginComponent) {
 
     render() {
       const model = this.props.model;
+      const { attr, style } = model;
       return (
         <div
           className="widget-preview-wrapper"
           ref={this.wrapperRef}
           onMouseDown={this.handelMouseDownForDrag}
           style={{
-            top: model.style.top,
-            left:  model.style.left,
+            top: style.top,
+            left:  style.left,
           }}>
-
           <OriginComponent
             model={model}
-            style={_.omit(model.style, ['top', 'left'])} attr={model.attr}
+            style={_.omit(model.style, ['top', 'left'])}
+            attr={{
+              ...model.attr
+            }}
           />
           {this.renderDragPoints()}
         </div>
