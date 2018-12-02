@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import { FormInput, FormColor, FormTransform } from 'comps/form-item';
+import { Icon } from 'antd';
+import { FormInput, FormColor, FormTransform, FormRadioGroup } from 'comps/form-item';
 import './style.less';
 
 const configItems = [
@@ -10,6 +11,17 @@ const configItems = [
   { path: 'width', label: '宽度', className: 'quarter' },
   { path: 'height', label: '高度', className: 'quarter' },
   { path: 'color', label: '字体颜色', Comp: FormColor, className: 'half' },
+  {
+    path: 'textAlign', label: '对齐方式', Comp: FormRadioGroup,
+    className: "icon-center",
+    props: {
+      options: [
+        { value: 'left', text: <Icon type="align-left" />},
+        { value: 'center', text: <Icon type="align-center" />},
+        { value: 'right', text: <Icon type="align-right" />},
+      ]
+    }
+  },
   {
     path: 'backgroundColor',
     label: '背景颜色',
@@ -33,6 +45,7 @@ class CompStyleEditor extends React.Component {
     const FormComp = item.Comp || FormInput;
     return (
       <FormComp
+        {...item.props}
         key={item.path}
         model={this.props.style}
         path={item.path}

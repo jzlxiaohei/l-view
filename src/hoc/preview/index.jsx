@@ -35,8 +35,8 @@ export default function previewHoc(OriginComponent) {
       return {
         left,
         top,
-        width: rect.width,
-        height: rect.height,
+        width: Math.floor(rect.width),
+        height: Math.floor(rect.height),
       }
     }
 
