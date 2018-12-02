@@ -55,12 +55,19 @@ export default function hoc(OriginComponent) {
       const { model, path, itemProps } = this.props;
       const value = this.transformToView(this.props.getValue(model, path));
       const props = {
-        ..._.omit(this.props, ['getValue', 'itemProps', 'label', 'model', 'path']),
+        ..._.omit(this.props, [
+          'getValue', 'itemProps', 'label',
+          'model', 'path','className']
+        ),
         value,
         onChange: this.onChange,
       };
       return (
-        <Form.Item {...itemProps} label={this.props.label}>
+        <Form.Item
+          {...itemProps}
+          className={this.props.className}
+          label={this.props.label}
+        >
           <OriginComponent {...props} />
         </Form.Item>
       );
