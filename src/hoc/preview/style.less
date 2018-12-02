@@ -1,0 +1,15 @@
+@dragPointSize: 10px;
+
+.widget-preview-wrapper {
+  position: absolute;
+  .drag-point {
+    width: @dragPointSize;
+    height: @dragPointSize;
+    background: #f1c40f;
+    border-radius: 80%;
+    position: absolute;
+    z-index: 10;
+    right: -@dragPointSize / 2;
+    bottom: -@dragPointSize / 2;
+  }
+}
