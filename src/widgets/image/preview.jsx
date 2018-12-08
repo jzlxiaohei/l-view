@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import preview from '@/hoc/preview';
+import './preview.less';
 
 @preview
 class Image extends React.Component {
 
   static propTypes = {
-    src: PropTypes.string.isRequired,
     style: PropTypes.object.isRequired,
   }
 

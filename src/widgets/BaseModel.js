@@ -3,9 +3,33 @@ import _ from 'lodash';
 
 class BaseModel {
 
+  @observable draggable = false;
+  @observable resizable = true;
+
+  @action
+  setDraggable(_draggable) {
+    if(_draggable === this.draggable) {
+      return;
+    }
+    if(_draggable) {
+      this.draggable = false;
+      this.assignStyle({
+        position: 'absolute',
+      })
+    } else {
+      this.draggable = true;
+      this.assignStyle({
+        position: undefined,
+      })
+    }
+  }
+
+  @action
+  setResizable(_resizable) {
+    this.resizable = _resizable;
+  }
 
   @observable attr = {};
-
 
   @observable style = {};
 

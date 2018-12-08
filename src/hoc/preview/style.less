@@ -1,7 +1,7 @@
 @dragPointSize: 10px;
 
 .widget-preview-wrapper {
-  position: absolute;
+  position: relative;
   border: 1px dashed rgba(0,0,0,.3);
   .drag-point {
     width: @dragPointSize;
@@ -12,5 +12,8 @@
     z-index: 10;
     right: -@dragPointSize / 2;
     bottom: -@dragPointSize / 2;
+  }
+  &.absolute {
+    position: absolute;
   }
 }

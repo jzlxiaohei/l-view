@@ -9,6 +9,12 @@ const configItems = [
   { path: 'height', label: '高度', className: 'quarter' },
   { path: 'color', label: '字体颜色', Comp: FormColor, className: 'half' },
   {
+    path: 'backgroundColor',
+    label: '背景颜色',
+    Comp: FormColor,
+    className: 'half',
+  },
+  {
     path: 'textAlign',
     label: '对齐方式',
     Comp: FormRadioGroup,
@@ -32,12 +38,6 @@ const configItems = [
         },
       ],
     },
-  },
-  {
-    path: 'backgroundColor',
-    label: '背景颜色',
-    Comp: FormColor,
-    className: 'half',
   },
   {
     path: 'transform',

@@ -20,7 +20,6 @@ export default function previewHoc(OriginComponent) {
     }
 
     componentDidMount() {
-      this.initDrag();
     }
 
     componentWillUnmount() {
@@ -49,6 +48,11 @@ export default function previewHoc(OriginComponent) {
     }
 
     handelMouseDownForDrag = e => {
+      const model = this.props.model;
+      if(!model.draggable) {
+        return;
+      }
+
       this.lastDragX = e.clientX;
       this.lastDragY = e.clientY;
       const refDom = this.wrapperRef.current;
@@ -82,8 +86,8 @@ export default function previewHoc(OriginComponent) {
       const deltaY = clientY - this.lastDragY;
       this.lastDragX = clientX;
       this.lastDragY = clientY;
-      const oldTop = parseFloat(model.style.top);
-      const oldLeft = parseFloat(model.style.left);
+      const oldTop = parseFloat(model.style.top) || 0;
+      const oldLeft = parseFloat(model.style.left) || 0;
       model.assignStyle({
         top: oldTop + deltaY,
         left: oldLeft + deltaX
@@ -92,6 +96,10 @@ export default function previewHoc(OriginComponent) {
 
 
     handleResizeStart = (e) => {
+      const model = this.props.model;
+      if(!model.resizable) {
+        return;
+      }
       e.stopPropagation();
       const refDom = this.wrapperRef.current;
       const {width, height } = this.getRect();
@@ -141,23 +149,38 @@ export default function previewHoc(OriginComponent) {
       );
     }
 
+    getWrapperStyle() {
+      const model = this.props.model;
+      const { style } = model;
+      let wrapperStyle = {
+        width: style.width,
+        height: style.height,
+        top: style.top,
+        left: style.left,
+      }
+      if (style.position === 'absolute') {
+         _.assign(wrapperStyle, {
+          top: style.top,
+          left: style.left,
+        })
+      }
+      return wrapperStyle;
+    }
+
     render() {
       const model = this.props.model;
-      const { attr, style } = model;
+      const { attr } = model;
       return (
         <div
           className="widget-preview-wrapper"
           ref={this.wrapperRef}
           onMouseDown={this.handelMouseDownForDrag}
-          style={{
-            top: style.top,
-            left:  style.left,
-          }}>
+          style={this.getWrapperStyle()}>
           <OriginComponent
             model={model}
             style={_.omit(model.style, ['top', 'left'])}
             attr={{
-              ...model.attr
+              ...attr
             }}
           />
           {this.renderDragPoints()}

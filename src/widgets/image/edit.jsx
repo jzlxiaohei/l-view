@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import StyleEditor from 'comps/style-editor';
+import PropEditor from 'comps/prop-editor';
 import ImageModel from './Model';
 
 @observer
@@ -14,7 +14,7 @@ class ImageEdit extends React.Component {
   render() {
     return (
       <div className="widget-edit-image">
-        <StyleEditor style={this.props.model.style} />
+        <PropEditor model={this.props.model} />
       </div>
     )
   }

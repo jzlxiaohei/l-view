@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { FormInput } from 'comps/form-item';
 import configItems from './configItems';
-import './style.less';
 
 
 @observer
 class CompStyleEditor extends React.Component {
   static propTypes = {
-    style: PropTypes.object.isRequired,
+    model: PropTypes.object.isRequired,
   };
 
   renderItem(item) {
@@ -18,7 +17,7 @@ class CompStyleEditor extends React.Component {
       <FormComp
         {...item.props}
         key={item.path}
-        model={this.props.style}
+        model={this.props.model}
         path={item.path}
         label={item.label}
         className={item.className}
@@ -29,7 +28,7 @@ class CompStyleEditor extends React.Component {
 
   render() {
     return (
-      <div className="comps-style-editor">
+      <div className="style-editor">
         {configItems.map(item => {
           return this.renderItem(item);
         })}
