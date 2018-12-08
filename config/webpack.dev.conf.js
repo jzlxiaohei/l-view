@@ -31,7 +31,6 @@ const config = {
     path: DIST_PATH,
   },
   externals: {
-    antd: 'antd',
     moment: 'moment',
   },
   module: {
