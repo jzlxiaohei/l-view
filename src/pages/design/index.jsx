@@ -6,35 +6,51 @@ import { WidgetTypes } from "@/widgets/widgetTable";
 
 
 import './style.less';
+import { action, observable } from 'mobx';
 
 @observer
 class DesignPage extends React.Component {
+
+  @observable
+  selectedModel = null;
 
   constructor() {
     super();
     this.init();
   }
 
+  @action
   init() {
     this.designModel = new DesignModel();
     this.designModel.pushByType(WidgetTypes.Image);
     this.designModel.pushByType(WidgetTypes.Text);
+    this.selectedModel = this.designModel.rootModel;
   }
 
-
+  @action.bound
+  handlePreviewSelect(model) {
+    if(this.selectedModel !== model) {
+      this.selectedModel.setSelected(false);
+      this.selectedModel = model;
+      this.selectedModel.setSelected(true);
+    }
+  }
 
   render() {
     const root = this.designModel.rootModel;
+    const selectedModel = this.selectedModel;
     return (
       <div className="page-design">
-        <div className="design-container">
-          <div className="preview-container">
+        <div className="design-area">
+          <div className="preview-area">
             <div className="simulator">
-              <root.$Preview model={root} />
+              <root.$Preview
+                model={root} onSelect={this.handlePreviewSelect}
+              />
             </div>
           </div>
-          <div className="edit-container">
-            <root.$Edit model={root} />
+          <div className="edit-area">
+            <selectedModel.$Edit model={selectedModel} />
           </div>
         </div>
       </div>

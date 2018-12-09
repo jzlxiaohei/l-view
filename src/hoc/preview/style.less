@@ -2,7 +2,12 @@
 
 .widget-preview-wrapper {
   position: relative;
-  border: 1px dashed rgba(0,0,0,.3);
+  outline: 2px dashed rgba(0,0,0,.3);
+
+  &.selected {
+    outline: 2px solid #f50;
+  }
+
   .drag-point {
     width: @dragPointSize;
     height: @dragPointSize;

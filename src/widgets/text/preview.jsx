@@ -18,8 +18,6 @@ class Text extends React.Component {
 
     return (
       <div
-        {...otherAttr}
-        className="preview-widget-text"
         style={style}
         dangerouslySetInnerHTML={{
           __html: this.props.attr.text,

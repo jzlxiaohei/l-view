@@ -4,6 +4,7 @@ import OpEditor from './op-editor';
 import StyleEditor from './style-editor';
 import { observer } from 'mobx-react';
 import WidgetBaseModel from '@/widgets/BaseModel';
+import { Tag, Divider } from 'antd';
 import './style.less';
 
 @observer
@@ -17,6 +18,8 @@ class PropEditor extends React.Component {
     const model = this.props.model;
     return (
       <div className="comp-prop-editor">
+        <Tag color="blue">{model.$type}</Tag>
+        <Divider />
         <OpEditor model={model} />
         <StyleEditor model={model.style}/>
       </div>

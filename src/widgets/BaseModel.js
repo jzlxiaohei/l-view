@@ -5,6 +5,12 @@ class BaseModel {
 
   @observable draggable = false;
   @observable resizable = true;
+  @observable selected = false;
+
+  @action
+  setSelected(_selected) {
+    this.selected = _selected;
+  }
 
   @action
   setDraggable(_draggable) {

@@ -34,7 +34,7 @@ export const widgetTable = {
   createModel(type) {
     checkWidgetType(type);
     const widgetModel = new WidgetMeta[type].Model();
-    widgetModel.$Type = type;
+    widgetModel.$type = type;
     widgetModel.$Preview = widgetTable.getPreview(type);
     widgetModel.$Edit =  widgetTable.getEdit(type);
     return widgetModel;

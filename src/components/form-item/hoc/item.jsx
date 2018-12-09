@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import { isObservable } from 'mobx';
+import { isObservable, action } from 'mobx';
 import hoistNonReactStatic from 'hoist-non-react-statics';
 import _ from 'lodash';
 import { Form } from 'antd';
@@ -22,7 +22,7 @@ export default function hoc(OriginComponent) {
       getValue: _.get
     };
 
-    onChange = (data) => {
+    onChange = action((data) => {
       const { model, path, onChange } = this.props;
       if (onChange) {
         onChange({
@@ -39,7 +39,7 @@ export default function hoc(OriginComponent) {
         const modelValue = this.transformToModel(data.value);
         _.set(model, path, modelValue);
       }
-    };
+    });
 
     transformToModel(viewValue) {
       const _t = OriginComponent.transformToModel || _.identity;

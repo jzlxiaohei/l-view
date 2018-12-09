@@ -9,6 +9,7 @@
   "dependencies": {
     "@babel/runtime": "^7.1.5",
     "antd": "^3.10.9",
+    "classnames": "^2.2.6",
     "draft-js": "^0.10.5",
     "draft-js-export-html": "^1.2.0",
     "draft-js-import-html": "^1.2.1",

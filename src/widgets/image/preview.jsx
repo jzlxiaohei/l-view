@@ -12,12 +12,11 @@ class Image extends React.Component {
   }
 
   render() {
-    const { style, attr } = this.props;
+    const { attr } = this.props;
     return (
       <img
-        {...attr}
+        src={attr.src}
         className="preview-widget-image"
-        style={style}
         draggable={false}
         alt=""
       />

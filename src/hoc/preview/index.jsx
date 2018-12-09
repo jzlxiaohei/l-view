@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import hoistNonReactStatic from 'hoist-non-react-statics';
 import _ from 'lodash';
+import cns from 'classnames';
 import './style.less';
 
 export default function previewHoc(OriginComponent) {
@@ -12,18 +13,13 @@ export default function previewHoc(OriginComponent) {
 
     static propTypes = {
       model: PropTypes.object.isRequired,
+      onSelect: PropTypes.func.isRequired,
+      className: PropTypes.string,
     }
 
     constructor(props) {
       super(props);
       this.wrapperRef = React.createRef();
-    }
-
-    componentDidMount() {
-    }
-
-    componentWillUnmount() {
-      this.destroyDrag();
     }
 
     getRect() {
@@ -141,6 +137,11 @@ export default function previewHoc(OriginComponent) {
       });
     }
 
+    handleClick = (e) => {
+      e.stopPropagation();
+      this.props.onSelect(this.props.model);
+    }
+
     renderDragPoints() {
       const model = this.props.model;
       if(!model.resizable) {
@@ -174,7 +175,7 @@ export default function previewHoc(OriginComponent) {
     renderChildren(model) {
       if (model.children) {
         return model.children.map(ch => {
-          return <ch.$Preview model={ch} />
+          return <ch.$Preview model={ch} onSelect={this.props.onSelect} />
         })
       }
     }
@@ -182,10 +183,18 @@ export default function previewHoc(OriginComponent) {
     render() {
       const model = this.props.model;
       const { attr } = model;
+      const wrapperClassName = cns({
+        'widget-preview-wrapper': true,
+        selected: model.selected,
+        [this.props.className]: !!this.props.className
+      });
+
       return (
         <div
-          className="widget-preview-wrapper"
+          className={wrapperClassName}
+          id={attr.id}
           ref={this.wrapperRef}
+          onClick={this.handleClick}
           onMouseDown={this.handelMouseDownForDrag}
           style={this.getWrapperStyle()}>
           <OriginComponent

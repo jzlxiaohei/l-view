@@ -22,11 +22,11 @@ class TextEditor extends React.Component {
     const model = this.props.model;
     return (
       <div className="widget-edit-text">
+        <PropEditor model={model} />
         <DraftEditor
           onChange={this.handleChange}
           editorState={model.editorState}
         />
-        <PropEditor model={model} />
       </div>
     );
   }

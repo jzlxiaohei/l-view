@@ -1,4 +1,5 @@
 import { widgetTable, WidgetTypes } from "@/widgets/widgetTable";
+import { action } from "mobx";
 
 
 class DesignModel {
@@ -7,11 +8,15 @@ class DesignModel {
     this.init();
   }
 
+  @action
   init() {
     const type = WidgetTypes.Container
     this.rootModel = widgetTable.createModel(type);
     this.rootModel.setDraggable(false);
     this.rootModel.setResizable(false);
+    this.rootModel.assignAttr({
+      id: 'root-widget',
+    })
   }
 
   pushByType(type) {
