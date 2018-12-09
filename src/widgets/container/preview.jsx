@@ -16,7 +16,6 @@ class Image extends React.Component {
       <div
         className="preview-widget-container"
         style={this.props.style}
-        {...this.props.attr}
       >
         {this.props.children}
       </div>

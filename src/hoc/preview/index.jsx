@@ -182,7 +182,7 @@ export default function previewHoc(OriginComponent) {
 
     render() {
       const model = this.props.model;
-      const { attr } = model;
+      const { attr, style } = model;
       const wrapperClassName = cns({
         'widget-preview-wrapper': true,
         selected: model.selected,
@@ -199,7 +199,9 @@ export default function previewHoc(OriginComponent) {
           style={this.getWrapperStyle()}>
           <OriginComponent
             model={model}
-            style={_.omit(model.style, ['top', 'left', 'width', 'height'])}
+            style={{
+              ...style
+            }}
             attr={{
               ...attr
             }}

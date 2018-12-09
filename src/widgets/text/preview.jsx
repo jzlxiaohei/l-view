@@ -13,8 +13,7 @@ class Text extends React.Component {
   }
 
   render() {
-    const { style, attr } = this.props;
-    const otherAttr = _.omit(attr, ['text']);
+    const { style } = this.props;
 
     return (
       <div
