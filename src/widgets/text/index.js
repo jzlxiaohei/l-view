@@ -1,3 +1,9 @@
-export { default as TextPreview } from './preview';
-export { default as TextEdit } from './edit';
-export { default as TextModel } from './Model';
+import Preview from './preview';
+import Edit from './edit';
+import Model from './Model';
+
+export default {
+  Preview,
+  Edit,
+  Model,
+}

@@ -142,6 +142,10 @@ export default function previewHoc(OriginComponent) {
     }
 
     renderDragPoints() {
+      const model = this.props.model;
+      if(!model.resizable) {
+        return null;
+      }
       return (
         <React.Fragment>
           <div className="drag-point" onMouseDown={(e) => this.handleResizeStart(e)} />
@@ -167,6 +171,14 @@ export default function previewHoc(OriginComponent) {
       return wrapperStyle;
     }
 
+    renderChildren(model) {
+      if (model.children) {
+        return model.children.map(ch => {
+          return <ch.$Preview model={ch} />
+        })
+      }
+    }
+
     render() {
       const model = this.props.model;
       const { attr } = model;
@@ -178,11 +190,13 @@ export default function previewHoc(OriginComponent) {
           style={this.getWrapperStyle()}>
           <OriginComponent
             model={model}
-            style={_.omit(model.style, ['top', 'left'])}
+            style={_.omit(model.style, ['top', 'left', 'width', 'height'])}
             attr={{
               ...attr
             }}
-          />
+          >
+            {this.renderChildren(model)}
+          </OriginComponent>
           {this.renderDragPoints()}
         </div>
       )
