@@ -7,15 +7,13 @@ import cns from 'classnames';
 import './style.less';
 
 export default function previewHoc(OriginComponent) {
-
   @observer
   class WidgetPreview extends React.Component {
-
     static propTypes = {
       model: PropTypes.object.isRequired,
       onSelect: PropTypes.func.isRequired,
       className: PropTypes.string,
-    }
+    };
 
     constructor(props) {
       super(props);
@@ -26,13 +24,13 @@ export default function previewHoc(OriginComponent) {
       const refDom = this.wrapperRef.current;
       const rect = refDom.getBoundingClientRect();
       const left = refDom.offsetLeft;
-      const top =  refDom.offsetTop;
+      const top = refDom.offsetTop;
       return {
         left,
         top,
         width: Math.floor(rect.width),
         height: Math.floor(rect.height),
-      }
+      };
     }
 
     initDrag() {
@@ -45,7 +43,7 @@ export default function previewHoc(OriginComponent) {
 
     handelMouseDownForDrag = e => {
       const model = this.props.model;
-      if(!model.draggable) {
+      if (!model.draggable) {
         return;
       }
 
@@ -53,26 +51,14 @@ export default function previewHoc(OriginComponent) {
       this.lastDragY = e.clientY;
       const refDom = this.wrapperRef.current;
 
-      refDom.ownerDocument.addEventListener(
-        'mousemove',
-        this.handleDrag
-      );
-      refDom.ownerDocument.addEventListener(
-        'mouseup',
-        this.handleDragEnd
-      );
+      refDom.ownerDocument.addEventListener('mousemove', this.handleDrag);
+      refDom.ownerDocument.addEventListener('mouseup', this.handleDragEnd);
     };
 
     handleDragEnd = () => {
       const refDom = this.wrapperRef.current;
-      refDom.ownerDocument.removeEventListener(
-        'mousemove',
-        this.handleDrag
-      );
-      refDom.ownerDocument.removeEventListener(
-        'mouseup',
-        this.handleDragEnd
-      );
+      refDom.ownerDocument.removeEventListener('mousemove', this.handleDrag);
+      refDom.ownerDocument.removeEventListener('mouseup', this.handleDragEnd);
     };
 
     handleDrag = e => {
@@ -86,47 +72,40 @@ export default function previewHoc(OriginComponent) {
       const oldLeft = parseFloat(model.style.left) || 0;
       model.assignStyle({
         top: oldTop + deltaY,
-        left: oldLeft + deltaX
+        left: oldLeft + deltaX,
       });
     };
 
-
-    handleResizeStart = (e) => {
+    handleResizeStart = e => {
       const model = this.props.model;
-      if(!model.resizable) {
+      if (!model.resizable) {
         return;
       }
       e.stopPropagation();
       const refDom = this.wrapperRef.current;
-      const {width, height } = this.getRect();
+      const { width, height } = this.getRect();
       this.lastWidth = width;
       this.lastHeight = height;
       this.lastResizeX = e.clientX;
       this.lastResizeY = e.clientY;
-      refDom.ownerDocument.addEventListener(
-        'mousemove',
-        this.handleMoveResize
-      );
-      refDom.ownerDocument.addEventListener(
-        'mouseup',
-        this.handleResizeStop
-      );
-    }
+      refDom.ownerDocument.addEventListener('mousemove', this.handleMoveResize);
+      refDom.ownerDocument.addEventListener('mouseup', this.handleResizeStop);
+    };
 
     handleResizeStop = () => {
       const refDom = this.wrapperRef.current;
 
       refDom.ownerDocument.removeEventListener(
         'mousemove',
-        this.handleMoveResize
+        this.handleMoveResize,
       );
       refDom.ownerDocument.removeEventListener(
         'mouseup',
-        this.handleResizeStop
+        this.handleResizeStop,
       );
-    }
+    };
 
-    handleMoveResize = (e) => {
+    handleMoveResize = e => {
       const model = this.props.model;
       const { clientX, clientY } = e;
       const width = clientX - this.lastResizeX;
@@ -135,21 +114,24 @@ export default function previewHoc(OriginComponent) {
         width: this.lastWidth + width,
         height: this.lastHeight + height,
       });
-    }
+    };
 
-    handleClick = (e) => {
+    handleClick = e => {
       e.stopPropagation();
       this.props.onSelect(this.props.model);
-    }
+    };
 
     renderDragPoints() {
       const model = this.props.model;
-      if(!model.resizable) {
+      if (!model.resizable) {
         return null;
       }
       return (
         <React.Fragment>
-          <div className="drag-point" onMouseDown={(e) => this.handleResizeStart(e)} />
+          <div
+            className="drag-point"
+            onMouseDown={e => this.handleResizeStart(e)}
+          />
         </React.Fragment>
       );
     }
@@ -162,21 +144,27 @@ export default function previewHoc(OriginComponent) {
         height: style.height,
         top: style.top,
         left: style.left,
-      }
+      };
       if (style.position === 'absolute') {
-         _.assign(wrapperStyle, {
+        _.assign(wrapperStyle, {
           top: style.top,
           left: style.left,
-        })
+        });
       }
       return wrapperStyle;
     }
 
     renderChildren(model) {
       if (model.children) {
-        return model.children.map(ch => {
-          return <ch.$Preview model={ch} onSelect={this.props.onSelect} />
-        })
+        return model.children.map((ch, index) => {
+          return (
+            <ch.$Preview
+              key={index}
+              model={ch}
+              onSelect={this.props.onSelect}
+            />
+          );
+        });
       }
     }
 
@@ -186,7 +174,7 @@ export default function previewHoc(OriginComponent) {
       const wrapperClassName = cns({
         'widget-preview-wrapper': true,
         selected: model.selected,
-        [this.props.className]: !!this.props.className
+        [this.props.className]: !!this.props.className,
       });
 
       return (
@@ -196,26 +184,27 @@ export default function previewHoc(OriginComponent) {
           ref={this.wrapperRef}
           onClick={this.handleClick}
           onMouseDown={this.handelMouseDownForDrag}
-          style={this.getWrapperStyle()}>
+          style={this.getWrapperStyle()}
+        >
           <OriginComponent
             model={model}
             style={{
-              ...style
+              ...style,
             }}
             attr={{
-              ...attr
+              ...attr,
             }}
           >
             {this.renderChildren(model)}
           </OriginComponent>
           {this.renderDragPoints()}
         </div>
-      )
+      );
     }
   }
 
-  hoistNonReactStatic(WidgetPreview, OriginComponent)
-  WidgetPreview.$OriginComponent = OriginComponent
+  hoistNonReactStatic(WidgetPreview, OriginComponent);
+  WidgetPreview.$OriginComponent = OriginComponent;
 
   return WidgetPreview;
 }

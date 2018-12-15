@@ -1,20 +1,11 @@
 import BaseModel from '../BaseModel';
-import { observable, action } from 'mobx';
-import _ from 'lodash';
+import { WidgetTypes } from '../widgetTable';
 
 class Container extends BaseModel {
-
-  @observable children = [];
-
-  @action
-  push(child) {
-    this.children.push(child);
-  }
-
-  @action
-  remove(child) {
-    _.remove(child);
-  }
+  childrenTypes = [
+    WidgetTypes.Text,
+    WidgetTypes.Image,
+  ]
 }
 
 export default Container;

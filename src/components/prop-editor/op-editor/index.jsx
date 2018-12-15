@@ -5,7 +5,7 @@ import { FormCheckbox } from 'comps/form-item';
 
 
 @observer
-class CompStyleEditor extends React.Component {
+class CompOperationEditor extends React.Component {
   static propTypes = {
     model: PropTypes.object,
   };
@@ -23,4 +23,4 @@ class CompStyleEditor extends React.Component {
   }
 }
 
-export default CompStyleEditor;
+export default CompOperationEditor;

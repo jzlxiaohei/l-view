@@ -53,6 +53,18 @@ class BaseModel {
     })
   }
 
+  @observable children = [];
+
+  @action
+  push(child) {
+    this.children.push(child);
+  }
+
+  @action
+  remove(child) {
+    _.remove(child);
+  }
+
 }
 
 export default BaseModel;
