@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import DesignModel from './DesignModel';
-import { WidgetTypes } from "@/widgets/widgetTable";
+import { WidgetTypes, widgetTable } from "@/widgets/widgetTable";
 
 
 import './style.less';
@@ -24,6 +24,17 @@ class DesignPage extends React.Component {
     this.designModel = new DesignModel();
     this.designModel.pushByType(WidgetTypes.Image);
     this.designModel.pushByType(WidgetTypes.Text);
+
+    const carouselModel = widgetTable.createModel(WidgetTypes.Carousel);
+    carouselModel.push(
+      widgetTable.createModel(WidgetTypes.Image)
+    )
+    carouselModel.push(
+      widgetTable.createModel(WidgetTypes.Image)
+    )
+
+    this.designModel.push(carouselModel);
+
     this.selectedModel = this.designModel.rootModel;
   }
 

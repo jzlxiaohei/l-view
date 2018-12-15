@@ -7,7 +7,7 @@ import ChildrenEditor from 'comps/children-editor';
 import ContainerModel from './Model';
 
 @observer
-class ContainerEditor extends React.Component {
+class CarouselEdit extends React.Component {
 
   static propTypes = {
     model: PropTypes.instanceOf(ContainerModel),
@@ -26,4 +26,4 @@ class ContainerEditor extends React.Component {
   }
 }
 
-export default ContainerEditor;
+export default CarouselEdit;

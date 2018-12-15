@@ -22,6 +22,7 @@ class DesignModel {
   pushByType(type) {
     const widgetModel = widgetTable.createModel(type);
     this.push(widgetModel);
+    return widgetModel;
   }
 
   push(child) {

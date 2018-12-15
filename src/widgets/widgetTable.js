@@ -1,12 +1,14 @@
 import Container from './container';
 import Text from './text';
 import Image from './image';
+import Carousel from './carousel';
 import _ from 'lodash';
 
 const WidgetMeta = {
   Container,
   Text,
   Image,
+  Carousel,
 }
 
 export const WidgetTypes = _.mapValues(

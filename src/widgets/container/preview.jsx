@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import preview from '@/hoc/preview';
 
 @preview
-class Image extends React.Component {
+class Container extends React.Component {
 
   static propTypes = {
     style: PropTypes.object.isRequired,
@@ -23,4 +23,4 @@ class Image extends React.Component {
   }
 }
 
-export default Image;
+export default Container;
