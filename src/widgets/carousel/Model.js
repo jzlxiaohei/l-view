@@ -2,7 +2,7 @@ import BaseModel from '../BaseModel';
 import { WidgetTypes } from '../widgetTable';
 
 class Carousel extends BaseModel {
-  childrenTypes = [
+  AllowedChildrenTypes = [
     WidgetTypes.Text,
     WidgetTypes.Image,
   ]

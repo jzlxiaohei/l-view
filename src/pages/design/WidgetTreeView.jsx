@@ -3,6 +3,7 @@ import SortableTree from 'react-sortable-tree';
 import 'react-sortable-tree/style.css';
 import FullNodeTheme from 'react-sortable-tree-theme-full-node-drag';
 import { observer } from 'mobx-react';
+import _ from 'lodash';
 
 function getTreeData(json, { isRoot = false } = {}) {
   let title = <div>{json.$type}</div>;
@@ -17,7 +18,7 @@ function getTreeData(json, { isRoot = false } = {}) {
   const treeData = {
     title,
     expanded: json.expanded,
-    selected: json.selected,
+    // selected: json.selected,
     id: json.id,
     isRoot,
     origin: json,
@@ -35,7 +36,8 @@ function getTreeData(json, { isRoot = false } = {}) {
 class Tree extends Component {
 
   handleVisibilityToggle = data => {
-    data.node.origin.setExpanded(data.expanded);
+    const origin = data.node.origin;
+    origin.setExpanded(data.expanded);
   };
 
   render() {
@@ -45,8 +47,29 @@ class Tree extends Component {
       <SortableTree
         onVisibilityToggle={this.handleVisibilityToggle}
         treeData={treeData}
-        onChange={treeData => console.log({ treeData })}
+        onChange={_.noop}
         theme={FullNodeTheme}
+        generateNodeProps={rowInfo => {
+          const origin = rowInfo.node.origin;
+          const buttons = []; // ReactNode
+          return {
+            subtitle() {
+              const id = origin.attr.id;
+              if (id) {
+                return `#${id}`;
+              }
+              return '';
+            },
+            buttons,
+            className: origin.selected
+              ? `selected widget-tree-item`
+              : 'widget-tree-item',
+            onClick: () => {
+              // origin.setExpanded(true);
+              this.props.onSelect(origin, false);
+            }
+          };
+        }}
       />
     );
   }

@@ -64,8 +64,12 @@ class BaseModel {
   @action
   push(child) {
     if(_.isArray(child)) {
-      child.forEach(ch => this.children.push(ch))
+      child.forEach(ch => {
+        ch.$parent = this;
+        this.children.push(ch)
+      });
     } else {
+      child.$parent = this;
       this.children.push(child);
     }
   }

@@ -41,12 +41,24 @@ class DesignPage extends React.Component {
   }
 
   @action.bound
-  handlePreviewSelect(model) {
-    if(this.selectedModel !== model) {
+  handlePreviewSelect(model, needExpanded = true) {
+    if(this.selectedModel) {
       this.selectedModel.setSelected(false);
-      this.selectedModel = model;
-      this.selectedModel.setSelected(true);
+      if(needExpanded) {
+        model.setExpanded(false);
+      }
     }
+    this.selectedModel = model;
+    model.setSelected(true);
+    if(needExpanded) {
+      model.setExpanded(true);
+      let parent = model.$parent;
+      while(parent) {
+        parent.setExpanded(true);
+        parent = parent.$parent;
+      }
+    }
+
   }
 
   render() {
@@ -56,7 +68,11 @@ class DesignPage extends React.Component {
       <div className="page-design">
         <div id="design-root">
           <div className="tree-view-area">
-            <WidgetTreeView model={root}/>
+            <WidgetTreeView
+              selectedModel={selectedModel}
+              model={root}
+              onSelect={this.handlePreviewSelect}
+            />
           </div>
           <div className="preview-area">
             <div className="simulator">

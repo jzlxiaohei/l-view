@@ -22,9 +22,9 @@ class EditAddChildren extends React.Component {
   };
 
   render() {
-    const { childrenTypes } = this.props.model;
-    if (!childrenTypes) {
-      throw new Error('childrenTypes must be in model for add-children editor');
+    const { AllowedChildrenTypes } = this.props.model;
+    if (!AllowedChildrenTypes) {
+      throw new Error('AllowedChildrenTypes must be in model for add-children editor');
     }
     return (
       <Card
@@ -32,7 +32,7 @@ class EditAddChildren extends React.Component {
         title={this.props.title}
       >
         {
-          childrenTypes.map(v => {
+          AllowedChildrenTypes.map(v => {
             return (
               <Card.Grid
                 className="child-view-type-card"
