@@ -20,7 +20,8 @@
     "react": "^16.6.3",
     "react-color": "^2.14.1",
     "react-dom": "^16.6.3",
-    "siema": "^1.5.1"
+    "react-sortable-tree": "^2.6.0",
+    "react-sortable-tree-theme-full-node-drag": "^1.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",

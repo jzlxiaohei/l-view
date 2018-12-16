@@ -22,13 +22,15 @@ class DesignModel {
   pushByType(type) {
     const widgetModel = widgetTable.createModel(type);
     this.push(widgetModel);
-    return widgetModel;
   }
 
   push(child) {
     this.rootModel.push(child);
   }
 
+  getJSON() {
+    return this.rootModel.getJSON();
+  }
 }
 
 export default DesignModel;

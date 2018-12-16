@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import DesignModel from './DesignModel';
 import { WidgetTypes, widgetTable } from "@/widgets/widgetTable";
-
+import WidgetTreeView from './WidgetTreeView';
 
 import './style.less';
 import { action, observable } from 'mobx';
@@ -22,15 +22,17 @@ class DesignPage extends React.Component {
   @action
   init() {
     this.designModel = new DesignModel();
+    window.$model = this.designModel;
     this.designModel.pushByType(WidgetTypes.Image);
     this.designModel.pushByType(WidgetTypes.Text);
 
     const carouselModel = widgetTable.createModel(WidgetTypes.Carousel);
     carouselModel.push(
-      widgetTable.createModel(WidgetTypes.Image)
-    )
-    carouselModel.push(
-      widgetTable.createModel(WidgetTypes.Image)
+      [
+        widgetTable.createModel(WidgetTypes.Image),
+        widgetTable.createModel(WidgetTypes.Image),
+        widgetTable.createModel(WidgetTypes.Image),
+      ]
     )
 
     this.designModel.push(carouselModel);
@@ -52,7 +54,10 @@ class DesignPage extends React.Component {
     const selectedModel = this.selectedModel;
     return (
       <div className="page-design">
-        <div className="design-area">
+        <div id="design-root">
+          <div className="tree-view-area">
+            <WidgetTreeView model={root}/>
+          </div>
           <div className="preview-area">
             <div className="simulator">
               <root.$Preview

@@ -609,6 +609,13 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
+"@babel/runtime@^7.1.2":
+  version "7.2.0"
+  resolved "http://registry.npm.taobao.org/@babel/runtime/download/@babel/runtime-7.2.0.tgz#b03e42eeddf5898e00646e4c840fa07ba8dcad7f"
+  integrity sha1-sD5C7t31iY4AZG5MhA+ge6jcrX8=
+  dependencies:
+    regenerator-runtime "^0.12.0"
+
 "@babel/template@^7.1.0", "@babel/template@^7.1.2":
   version "7.1.2"
   resolved "http://registry.npm.taobao.org/@babel/template/download/@babel/template-7.1.2.tgz#090484a574fef5a2d2d7726a674eceda5c5b5644"
@@ -999,7 +1006,7 @@ array-unique@^0.3.2:
   version "0.3.2"
   resolved "http://registry.npm.taobao.org/array-unique/download/array-unique-0.3.2.tgz#a894b75d4bc4f6cd679ef3244a9fd8f46ae2d428"
 
-asap@~2.0.3:
+asap@^2.0.6, asap@~2.0.3:
   version "2.0.6"
   resolved "http://registry.npm.taobao.org/asap/download/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
 
@@ -1440,6 +1447,11 @@ chalk@^2.0.0, chalk@^2.1.0, chalk@^2.4.1:
     ansi-styles "^3.2.1"
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
+
+change-emitter@^0.1.2:
+  version "0.1.6"
+  resolved "http://registry.npm.taobao.org/change-emitter/download/change-emitter-0.1.6.tgz#e8b2fe3d7f1ab7d69a32199aff91ea6931409515"
+  integrity sha1-6LL+PX8at9aaMhma/5HqaTFAlRU=
 
 chardet@^0.7.0:
   version "0.7.0"
@@ -2121,6 +2133,31 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
+disposables@^1.0.1:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/disposables/download/disposables-1.0.2.tgz#36c6a674475f55a2d6913567a601444e487b4b6e"
+  integrity sha1-NsamdEdfVaLWkTVnpgFETkh7S24=
+
+dnd-core@^2.5.4:
+  version "2.6.0"
+  resolved "http://registry.npm.taobao.org/dnd-core/download/dnd-core-2.6.0.tgz#12bad66d58742c6e5f7cf2943fb6859440f809c4"
+  integrity sha1-ErrWbVh0LG5ffPKUP7aFlED4CcQ=
+  dependencies:
+    asap "^2.0.6"
+    invariant "^2.0.0"
+    lodash "^4.2.0"
+    redux "^3.7.1"
+
+dnd-core@^7.0.2:
+  version "7.0.2"
+  resolved "http://registry.npm.taobao.org/dnd-core/download/dnd-core-7.0.2.tgz#6c080eb57243fa0372fd083b3db242d9eb525010"
+  integrity sha1-bAgOtXJD+gNy/Qg7PbJC2etSUBA=
+  dependencies:
+    asap "^2.0.6"
+    invariant "^2.2.4"
+    lodash "^4.17.11"
+    redux "^4.0.1"
+
 dns-equal@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/dns-equal/download/dns-equal-1.0.0.tgz#b39e7f1da6eb0a75ba9c17324b34753c47e0654d"
@@ -2166,6 +2203,13 @@ dom-converter@~0.2:
   resolved "http://registry.npm.taobao.org/dom-converter/download/dom-converter-0.2.0.tgz#6721a9daee2e293682955b6afe416771627bb768"
   dependencies:
     utila "~0.4"
+
+"dom-helpers@^2.4.0 || ^3.0.0":
+  version "3.4.0"
+  resolved "http://registry.npm.taobao.org/dom-helpers/download/dom-helpers-3.4.0.tgz#e9b369700f959f62ecde5a6babde4bccd9169af8"
+  integrity sha1-6bNpcA+Vn2Ls3lprq95LzNkWmvg=
+  dependencies:
+    "@babel/runtime" "^7.1.2"
 
 dom-matches@>=1.0.1:
   version "2.0.0"
@@ -2698,7 +2742,7 @@ faye-websocket@~0.11.1:
   dependencies:
     websocket-driver ">=0.5.1"
 
-fbjs@^0.8.0, fbjs@^0.8.15, fbjs@^0.8.16, fbjs@^0.8.9:
+fbjs@^0.8.0, fbjs@^0.8.1, fbjs@^0.8.15, fbjs@^0.8.16, fbjs@^0.8.9:
   version "0.8.17"
   resolved "http://registry.npm.taobao.org/fbjs/download/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
   dependencies:
@@ -2836,6 +2880,19 @@ from2@^2.1.0:
   dependencies:
     inherits "^2.0.1"
     readable-stream "^2.0.0"
+
+frontend-collective-react-dnd-scrollzone@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/frontend-collective-react-dnd-scrollzone/download/frontend-collective-react-dnd-scrollzone-1.0.1.tgz#0b70901c316c2783f76c3d55ec9c5bb2673914c4"
+  integrity sha1-C3CQHDFsJ4P3bD1V7Jxbsmc5FMQ=
+  dependencies:
+    hoist-non-react-statics "^3.1.0"
+    lodash.throttle "^4.0.1"
+    prop-types "^15.5.9"
+    raf "^3.2.0"
+    react "^16.3.0"
+    react-display-name "^0.2.0"
+    react-dom "^16.3.0"
 
 fs-minipass@^1.2.5:
   version "1.2.5"
@@ -3053,13 +3110,25 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
+hoist-non-react-statics@^1.2.0:
+  version "1.2.0"
+  resolved "http://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
+  integrity sha1-qkSM8JhtVcxAdzsXF0t90GbLfPs=
+
+hoist-non-react-statics@^2.1.0, hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
   version "2.5.5"
   resolved "http://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
 
 hoist-non-react-statics@^3.0.0:
   version "3.1.0"
   resolved "http://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-3.1.0.tgz#42414ccdfff019cd2168168be998c7b3bd5245c0"
+  dependencies:
+    react-is "^16.3.2"
+
+hoist-non-react-statics@^3.1.0:
+  version "3.2.1"
+  resolved "http://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-3.2.1.tgz#c09c0555c84b38a7ede6912b61efddafd6e75e1e"
+  integrity sha1-wJwFVchLOKft5pErYe/dr9bnXh4=
   dependencies:
     react-is "^16.3.2"
 
@@ -3319,7 +3388,7 @@ intersperse@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/intersperse/download/intersperse-1.0.0.tgz#f2561fb1cfef9f5277cc3347a22886b4351a5181"
 
-invariant@^2.2.2:
+invariant@^2.0.0, invariant@^2.1.0, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "http://registry.npm.taobao.org/invariant/download/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   dependencies:
@@ -3780,6 +3849,11 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
+lodash-es@^4.2.1:
+  version "4.17.11"
+  resolved "http://registry.npm.taobao.org/lodash-es/download/lodash-es-4.17.11.tgz#145ab4a7ac5c5e52a3531fb4f310255a152b4be0"
+  integrity sha1-FFq0p6xcXlKjUx+08xAlWhUrS+A=
+
 lodash._getnative@^3.0.0:
   version "3.9.1"
   resolved "http://registry.npm.taobao.org/lodash._getnative/download/lodash._getnative-3.9.1.tgz#570bc7dede46d61cdcde687d65d3eecbaa3aaff5"
@@ -3796,6 +3870,11 @@ lodash.isarray@^3.0.0:
   version "3.0.4"
   resolved "http://registry.npm.taobao.org/lodash.isarray/download/lodash.isarray-3.0.4.tgz#79e4eb88c36a8122af86f844aa9bcd851b5fbb55"
 
+lodash.isequal@^4.4.0, lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "http://registry.npm.taobao.org/lodash.isequal/download/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
+
 lodash.keys@^3.1.2:
   version "3.1.2"
   resolved "http://registry.npm.taobao.org/lodash.keys/download/lodash.keys-3.1.2.tgz#4dbc0472b156be50a0b286855d1bd0b0c656098a"
@@ -3808,7 +3887,7 @@ lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "http://registry.npm.taobao.org/lodash.memoize/download/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
 
-lodash.throttle@^4.0.0:
+lodash.throttle@^4.0.0, lodash.throttle@^4.0.1:
   version "4.1.1"
   resolved "http://registry.npm.taobao.org/lodash.throttle/download/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
 
@@ -3816,7 +3895,7 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "http://registry.npm.taobao.org/lodash.uniq/download/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-lodash@^4.0.1, lodash@^4.16.5, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5:
+lodash@^4.0.1, lodash@^4.16.5, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.2.1:
   version "4.17.11"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
 
@@ -3824,7 +3903,7 @@ loglevel@^1.4.1:
   version "1.6.1"
   resolved "http://registry.npm.taobao.org/loglevel/download/loglevel-1.6.1.tgz#e0fc95133b6ef276cdc8887cdaf24aa6f156f8fa"
 
-loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.3.1:
+loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.3.0, loose-envify@^1.3.1, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "http://registry.npm.taobao.org/loose-envify/download/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   dependencies:
@@ -5055,7 +5134,7 @@ querystringify@^2.0.0:
   version "2.1.0"
   resolved "http://registry.npm.taobao.org/querystringify/download/querystringify-2.1.0.tgz#7ded8dfbf7879dcc60d0a644ac6754b283ad17ef"
 
-raf@^3.4.0:
+raf@^3.2.0, raf@^3.4.0:
   version "3.4.1"
   resolved "http://registry.npm.taobao.org/raf/download/raf-3.4.1.tgz#0742e99a4a6552f445d73e3ee0328af0ff1ede39"
   dependencies:
@@ -5461,10 +5540,6 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-re-resizable@4.9.3:
-  version "4.9.3"
-  resolved "http://registry.npm.taobao.org/re-resizable/download/re-resizable-4.9.3.tgz#833df4a4a9b62cfc1de11bc1456285374826e1f0"
-
 react-color@^2.14.1:
   version "2.14.1"
   resolved "http://registry.npm.taobao.org/react-color/download/react-color-2.14.1.tgz#db8ad4f45d81e74896fc2e1c99508927c6d084e0"
@@ -5475,7 +5550,62 @@ react-color@^2.14.1:
     reactcss "^1.2.0"
     tinycolor2 "^1.4.1"
 
-react-dom@^16.6.3:
+react-display-name@^0.2.0:
+  version "0.2.4"
+  resolved "http://registry.npm.taobao.org/react-display-name/download/react-display-name-0.2.4.tgz#e2a670b81d79a2204335510c01246f4c92ff12cf"
+  integrity sha1-4qZwuB15oiBDNVEMASRvTJL/Es8=
+
+react-dnd-html5-backend@2.5.4:
+  version "2.5.4"
+  resolved "http://registry.npm.taobao.org/react-dnd-html5-backend/download/react-dnd-html5-backend-2.5.4.tgz#974ad083f67b12d56977a5b171f5ffeb29d78352"
+  integrity sha1-l0rQg/Z7EtVpd6WxcfX/6ynXg1I=
+  dependencies:
+    lodash "^4.2.0"
+
+react-dnd-html5-backend@^7.0.1:
+  version "7.0.2"
+  resolved "http://registry.npm.taobao.org/react-dnd-html5-backend/download/react-dnd-html5-backend-7.0.2.tgz#f74181ca0ff05be13eb6094629c5ad560f558a7e"
+  integrity sha1-90GByg/wW+E+tglGKcWtVg9Vin4=
+  dependencies:
+    dnd-core "^7.0.2"
+    lodash "^4.17.11"
+
+react-dnd-scrollzone@^4.0.0:
+  version "4.0.0"
+  resolved "http://registry.npm.taobao.org/react-dnd-scrollzone/download/react-dnd-scrollzone-4.0.0.tgz#d707170c0cd3b7ab3d991dd6a8cc0b3712454139"
+  integrity sha1-1wcXDAzTt6s9mR3WqMwLNxJFQTk=
+  dependencies:
+    hoist-non-react-statics "^1.2.0"
+    lodash.throttle "^4.0.1"
+    prop-types "^15.5.9"
+    raf "^3.2.0"
+    react-display-name "^0.2.0"
+
+react-dnd@2.5.4:
+  version "2.5.4"
+  resolved "http://registry.npm.taobao.org/react-dnd/download/react-dnd-2.5.4.tgz#0b6dc5e9d0dfc2909f4f4fe736e5534f3afd1bd9"
+  integrity sha1-C23F6dDfwpCfT0/nNuVTTzr9G9k=
+  dependencies:
+    disposables "^1.0.1"
+    dnd-core "^2.5.4"
+    hoist-non-react-statics "^2.1.0"
+    invariant "^2.1.0"
+    lodash "^4.2.0"
+    prop-types "^15.5.10"
+
+react-dnd@^7.0.1:
+  version "7.0.2"
+  resolved "http://registry.npm.taobao.org/react-dnd/download/react-dnd-7.0.2.tgz#8f5611a6e877592932c082d6280c64d1c817f420"
+  integrity sha1-j1YRpuh3WSkywILWKAxk0cgX9CA=
+  dependencies:
+    dnd-core "^7.0.2"
+    hoist-non-react-statics "^3.1.0"
+    invariant "^2.1.0"
+    lodash "^4.17.11"
+    recompose "^0.30.0"
+    shallowequal "^1.1.0"
+
+react-dom@^16.3.0, react-dom@^16.6.3:
   version "16.6.3"
   resolved "http://registry.npm.taobao.org/react-dom/download/react-dom-16.6.3.tgz#8fa7ba6883c85211b8da2d0efeffc9d3825cccc0"
   dependencies:
@@ -5483,13 +5613,6 @@ react-dom@^16.6.3:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     scheduler "^0.11.2"
-
-react-draggable@3.0.5:
-  version "3.0.5"
-  resolved "http://registry.npm.taobao.org/react-draggable/download/react-draggable-3.0.5.tgz#c031e0ed4313531f9409d6cd84c8ebcec0ddfe2d"
-  dependencies:
-    classnames "^2.2.5"
-    prop-types "^15.6.0"
 
 react-hot-loader@^4.3.12:
   version "4.3.12"
@@ -5519,14 +5642,6 @@ react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "http://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
-react-rnd@^9.0.4:
-  version "9.0.4"
-  resolved "http://registry.npm.taobao.org/react-rnd/download/react-rnd-9.0.4.tgz#267a8cc9602a760652369ac9a286b80626e6577f"
-  dependencies:
-    re-resizable "4.9.3"
-    react-draggable "3.0.5"
-    tslib "1.9.3"
-
 react-slick@~0.23.2:
   version "0.23.2"
   resolved "http://registry.npm.taobao.org/react-slick/download/react-slick-0.23.2.tgz#8d8bdbc77a6678e8ad36f50c32578c7c0f1c54f6"
@@ -5538,7 +5653,44 @@ react-slick@~0.23.2:
     prettier "^1.14.3"
     resize-observer-polyfill "^1.5.0"
 
-react@^16.6.3:
+react-sortable-tree-theme-full-node-drag@^1.1.0:
+  version "1.1.0"
+  resolved "http://registry.npm.taobao.org/react-sortable-tree-theme-full-node-drag/download/react-sortable-tree-theme-full-node-drag-1.1.0.tgz#75720ea7b152f6d8e58b29a555d21b8c3e3bc2a1"
+  integrity sha1-dXIOp7FS9tjliymlVdIbjD47wqE=
+  dependencies:
+    lodash.isequal "^4.4.0"
+    prop-types "^15.6.0"
+    react-dnd "2.5.4"
+    react-dnd-html5-backend "2.5.4"
+    react-dnd-scrollzone "^4.0.0"
+    react-virtualized "^9.13.0"
+
+react-sortable-tree@^2.6.0:
+  version "2.6.0"
+  resolved "http://registry.npm.taobao.org/react-sortable-tree/download/react-sortable-tree-2.6.0.tgz#206c15ffaf7cb8297c3d50bc057ccb72272c4b43"
+  integrity sha1-IGwV/698uCl8PVC8BXzLcicsS0M=
+  dependencies:
+    frontend-collective-react-dnd-scrollzone "^1.0.1"
+    lodash.isequal "^4.5.0"
+    prop-types "^15.6.1"
+    react-dnd "^7.0.1"
+    react-dnd-html5-backend "^7.0.1"
+    react-lifecycles-compat "^3.0.4"
+    react-virtualized "^9.19.1"
+
+react-virtualized@^9.13.0, react-virtualized@^9.19.1:
+  version "9.21.0"
+  resolved "http://registry.npm.taobao.org/react-virtualized/download/react-virtualized-9.21.0.tgz#8267c40ffb48db35b242a36dea85edcf280a6506"
+  integrity sha1-gmfED/tI2zWyQqNt6oXtzygKZQY=
+  dependencies:
+    babel-runtime "^6.26.0"
+    classnames "^2.2.3"
+    dom-helpers "^2.4.0 || ^3.0.0"
+    loose-envify "^1.3.0"
+    prop-types "^15.6.0"
+    react-lifecycles-compat "^3.0.4"
+
+react@^16.3.0, react@^16.6.3:
   version "16.6.3"
   resolved "http://registry.npm.taobao.org/react/download/react-16.6.3.tgz#25d77c91911d6bbdd23db41e70fb094cc1e0871c"
   dependencies:
@@ -5596,6 +5748,36 @@ readdirp@^2.0.0:
     graceful-fs "^4.1.11"
     micromatch "^3.1.10"
     readable-stream "^2.0.2"
+
+recompose@^0.30.0:
+  version "0.30.0"
+  resolved "http://registry.npm.taobao.org/recompose/download/recompose-0.30.0.tgz#82773641b3927e8c7d24a0d87d65aeeba18aabd0"
+  integrity sha1-gnc2QbOSfox9JKDYfWWu66GKq9A=
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    change-emitter "^0.1.2"
+    fbjs "^0.8.1"
+    hoist-non-react-statics "^2.3.1"
+    react-lifecycles-compat "^3.0.2"
+    symbol-observable "^1.0.4"
+
+redux@^3.7.1:
+  version "3.7.2"
+  resolved "http://registry.npm.taobao.org/redux/download/redux-3.7.2.tgz#06b73123215901d25d065be342eb026bc1c8537b"
+  integrity sha1-BrcxIyFZAdJdBlvjQusCa8HIU3s=
+  dependencies:
+    lodash "^4.2.1"
+    lodash-es "^4.2.1"
+    loose-envify "^1.1.0"
+    symbol-observable "^1.0.3"
+
+redux@^4.0.1:
+  version "4.0.1"
+  resolved "http://registry.npm.taobao.org/redux/download/redux-4.0.1.tgz#436cae6cc40fbe4727689d7c8fae44808f1bfef5"
+  integrity sha1-Q2yubMQPvkcnaJ18j65EgI8b/vU=
+  dependencies:
+    loose-envify "^1.4.0"
+    symbol-observable "^1.2.0"
 
 regenerate-unicode-properties@^7.0.0:
   version "7.0.0"
@@ -6303,6 +6485,11 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
+symbol-observable@^1.0.3, symbol-observable@^1.0.4, symbol-observable@^1.2.0:
+  version "1.2.0"
+  resolved "http://registry.npm.taobao.org/symbol-observable/download/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
+  integrity sha1-wiaIrtTqs83C3+rLtWFmBWCgCAQ=
+
 synthetic-dom@^1.2.0:
   version "1.2.0"
   resolved "http://registry.npm.taobao.org/synthetic-dom/download/synthetic-dom-1.2.0.tgz#f3589aafe2b5e299f337bb32973a9be42dd5625e"
@@ -6416,7 +6603,7 @@ trim-right@^1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/trim-right/download/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
 
-tslib@1.9.3, tslib@^1.9.0:
+tslib@^1.9.0:
   version "1.9.3"
   resolved "http://registry.npm.taobao.org/tslib/download/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
 

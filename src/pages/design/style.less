@@ -4,12 +4,20 @@
     margin: 0;
   }
 
+  #design-root {
+    display: flex;
+  }
+
   #root-widget {
     min-height: 667px;
   }
 
-  .design-area {
-    display: flex;
+  .tree-view-area {
+    width: 320px;
+    overflow-x: scroll;
+    .rstcustom__rowContents {
+      min-width: auto;
+    }
   }
 
   .preview-area {
