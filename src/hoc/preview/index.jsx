@@ -144,13 +144,17 @@ export default function previewHoc(OriginComponent) {
         height: style.height,
         top: style.top,
         left: style.left,
+        zIndex: style.zIndex,
       };
-      if (style.position === 'absolute') {
-        _.assign(wrapperStyle, {
-          top: style.top,
-          left: style.left,
-        });
+      if(model.isAbsolute) {
+        wrapperStyle.position = 'absolute';
       }
+      // if (style.position === 'absolute') {
+      //   _.assign(wrapperStyle, {
+      //     top: style.top,
+      //     left: style.left,
+      //   });
+      // }
       return wrapperStyle;
     }
 

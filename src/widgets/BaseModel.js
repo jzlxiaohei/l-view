@@ -4,9 +4,11 @@ import _ from 'lodash';
 class BaseModel {
 
   @observable draggable = false;
+  @observable isAbsolute =  false;
   @observable resizable = true;
   @observable selected = false;
   @observable expanded = false;
+
 
   @action
   setSelected(_selected) {

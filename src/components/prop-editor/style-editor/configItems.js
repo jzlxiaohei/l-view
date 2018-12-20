@@ -14,11 +14,12 @@ const configItems = [
     Comp: FormColor,
     className: 'half',
   },
+  { path: 'zIndex', label: '层级', className: 'half' },
   {
     path: 'textAlign',
     label: '对齐方式',
     Comp: FormRadioGroup,
-    className: 'icon-center',
+    className: 'icon-center half',
     props: {
       options: [
         {
