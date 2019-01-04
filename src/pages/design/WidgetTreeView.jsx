@@ -53,6 +53,8 @@ class Tree extends Component {
           const origin = rowInfo.node.origin;
           const buttons = []; // ReactNode
           return {
+            listIndex: 0,
+            lowerSiblingCounts: [],
             subtitle() {
               const id = origin.attr.id;
               if (id) {
