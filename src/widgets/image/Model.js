@@ -40,7 +40,11 @@ class ImageModel extends BaseModel{
 
   // 以宽度为依据，调整尺寸，避免压缩
   @action
-  async autoHeight(targetWidth = 375) {
+  async autoHeight() {
+    const targetWidth = this.style.width;
+    if(!targetWidth) {
+      return;
+    }
     try {
       const { width, height } = await getImageMeta(this.attr.src);
       const targetHeight =  height * targetWidth / width;

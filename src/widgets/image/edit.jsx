@@ -13,8 +13,8 @@ class ImageEdit extends React.Component {
   };
 
   handleAdjustRatio = (model) => {
-    const width = model.style.width;
-    model.autoHeight(width);
+    // const width = model.style.width;
+    model.autoHeight();
   }
 
   renderImageEditor(model) {

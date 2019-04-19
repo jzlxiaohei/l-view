@@ -1,54 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import preview from '@/hoc/preview';
-// import Siema from 'siema';
-import './preview.less';
+import { Carousel } from 'antd-mobile';
+import CarouselModel from './Model';
+import { observer } from 'mobx-react';
 
-// TODO: replace siema; may write myself
 @preview
-class Carousel extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.carouselRef = React.createRef();
-    this.deltaX = 0;
-  }
-
-  handelMouseDown = e => {
-    this.lastDragX = e.clientX - this.deltaX;
-    this.lastDragY = e.clientY;
-    const refDom = this.carouselRef.current;
-
-    refDom.ownerDocument.addEventListener('mousemove', this.handleDrag);
-    refDom.ownerDocument.addEventListener('mouseup', this.handleDragEnd);
-  }
-
-  handleDragEnd = () => {
-    const refDom = this.carouselRef.current;
-    refDom.ownerDocument.removeEventListener('mousemove', this.handleDrag);
-    refDom.ownerDocument.removeEventListener('mouseup', this.handleDragEnd);
-    //
-
-  };
-
-  handleDrag = e => {
-    const { clientX, clientY } = e;
-    const deltaX = clientX - this.lastDragX;
-    const deltaY = clientY - this.lastDragY;
-    if(Math.abs(deltaX) < Math.abs(deltaY)) {
-      return;
-    }
-    // this.lastDragX = clientX;
-    this.deltaX = deltaX;
-    this.carouselRef.current.style.transform = `translateX(${deltaX}px)`
-  };
-
-  componentDidMount() {
-    this.carouselRef.current.addEventListener('mousedown', this.handelMouseDown);
-  }
+@observer
+class LvCarousel extends React.Component {
 
   static propTypes = {
     children: PropTypes.node,
+    model: PropTypes.instanceOf(CarouselModel),
   }
 
   render() {
@@ -56,12 +19,19 @@ class Carousel extends React.Component {
       <div
         key={this.props.children.length}
         className="preview-widget-carousel"
-        ref={this.carouselRef}
       >
-        {this.props.children}
+        <Carousel
+          autoplay={false}
+          infinite
+          slideWidth={0.8}
+          selectedIndex={this.props.model.selectedIndex}
+          cellSpacing={20}
+        >
+          {this.props.children}
+        </Carousel>
       </div>
     )
   }
 }
 
-export default Carousel;
+export default LvCarousel;

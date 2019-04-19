@@ -4,19 +4,19 @@ import { observer } from 'mobx-react';
 import PropEditor from 'comps/prop-editor';
 import ChildrenEditor from 'comps/children-editor';
 
-import ContainerModel from './Model';
+import CarouselModel from './Model';
 
 @observer
 class CarouselEdit extends React.Component {
 
   static propTypes = {
-    model: PropTypes.instanceOf(ContainerModel),
+    model: PropTypes.instanceOf(CarouselModel),
   }
 
   render() {
     const model = this.props.model;
     return (
-      <div className="widget-edit-container">
+      <div className="widget-edit-carousel">
         <PropEditor
           model={model}
           renderAfterBasicInfo={model => <ChildrenEditor model={model} />}

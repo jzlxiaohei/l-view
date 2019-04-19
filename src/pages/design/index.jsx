@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import DesignModel from './DesignModel';
-import { WidgetTypes, widgetTable } from "@/widgets/widgetTable";
+import { WidgetTypes, widgetTable } from '@/widgets/widgetTable';
 import WidgetTreeView from './WidgetTreeView';
 
 import './style.less';
@@ -10,7 +10,6 @@ import { action, observable } from 'mobx';
 
 @observer
 class DesignPage extends React.Component {
-
   @observable
   selectedModel = null;
 
@@ -27,13 +26,11 @@ class DesignPage extends React.Component {
     this.designModel.pushByType(WidgetTypes.Text);
 
     const carouselModel = widgetTable.createModel(WidgetTypes.Carousel);
-    carouselModel.push(
-      [
-        widgetTable.createModel(WidgetTypes.Image),
-        widgetTable.createModel(WidgetTypes.Image),
-        widgetTable.createModel(WidgetTypes.Image),
-      ]
-    )
+    carouselModel.push([
+      widgetTable.createModel(WidgetTypes.Image),
+      widgetTable.createModel(WidgetTypes.Image),
+      widgetTable.createModel(WidgetTypes.Image),
+    ]);
 
     this.designModel.push(carouselModel);
 
@@ -41,24 +38,22 @@ class DesignPage extends React.Component {
   }
 
   @action.bound
-  handlePreviewSelect(model, needExpanded = true) {
-    if(this.selectedModel) {
+  handlePreviewSelect(model) {
+    if (this.selectedModel) {
       this.selectedModel.setSelected(false);
-      if(needExpanded) {
-        model.setExpanded(false);
-      }
+      model.setExpanded(false);
     }
     this.selectedModel = model;
     model.setSelected(true);
-    if(needExpanded) {
-      model.setExpanded(true);
-      let parent = model.$parent;
-      while(parent) {
-        parent.setExpanded(true);
-        parent = parent.$parent;
+    model.setExpanded(true);
+    let parent = model.$parent;
+    while (parent) {
+      parent.setExpanded(true);
+      if(parent.onChildSelect) {
+        parent.onChildSelect(model);
       }
+      parent = parent.$parent;
     }
-
   }
 
   render() {
@@ -76,9 +71,7 @@ class DesignPage extends React.Component {
           </div>
           <div className="preview-area">
             <div className="simulator">
-              <root.$Preview
-                model={root} onSelect={this.handlePreviewSelect}
-              />
+              <root.$Preview model={root} onSelect={this.handlePreviewSelect} />
             </div>
           </div>
           <div className="edit-area">
@@ -86,7 +79,7 @@ class DesignPage extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
