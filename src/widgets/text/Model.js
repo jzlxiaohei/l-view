@@ -4,7 +4,6 @@ import { EditorState, ContentState } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
 
 
-
 class Text extends BaseModel{
 
   @observable
@@ -28,11 +27,6 @@ class Text extends BaseModel{
       text: stateToHTML(this.editorState.getCurrentContent())
     })
   }
-
-
-
-
-  // TODO toJSON: attr.text
 
 }
 

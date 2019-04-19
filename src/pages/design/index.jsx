@@ -28,7 +28,7 @@ class DesignPage extends React.Component {
     const carouselModel = widgetTable.createModel(WidgetTypes.Carousel);
     carouselModel.push([
       widgetTable.createModel(WidgetTypes.Image),
-      widgetTable.createModel(WidgetTypes.Image),
+      widgetTable.createModel(WidgetTypes.Text),
       widgetTable.createModel(WidgetTypes.Image),
     ]);
 
