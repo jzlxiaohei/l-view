@@ -10,25 +10,25 @@ function getImageMeta(src) {
   }
 
   return new Promise(function (resolve, reject){
-    const image = new Image();
-    image.onerror = reject;
-    image.onload = () => {
+    const img = new Image();
+    img.onerror = reject;
+    img.onload = () => {
       const meta = {
-        width: image.width,
-        height: image.height,
+        width: img.width,
+        height: img.height,
       };
       cache[src] = meta;
       resolve(meta);
     }
-    image.src = src;
+    img.src = src;
   })
 }
 
-class Image extends BaseModel{
+class ImageModel extends BaseModel{
 
-  constructor(_getImageMeta) {
+  constructor() {
     super();
-    this.getImageMeta = _getImageMeta || getImageMeta;
+    // this.getImageMeta = _getImageMeta || getImageMeta;
     this.init();
   }
 
@@ -40,12 +40,19 @@ class Image extends BaseModel{
 
   // 以宽度为依据，调整尺寸，避免压缩
   @action
-  async getAutoHeight(targetWidth) {
-    const { width, height } = await this.getImageMeta();
-    const targetHeight =  height * targetWidth / width;
-    return targetHeight;
+  async autoHeight(targetWidth = 375) {
+    try {
+      const { width, height } = await getImageMeta(this.attr.src);
+      const targetHeight =  height * targetWidth / width;
+      this.assignStyle({
+        height: targetHeight,
+      })
+    } catch(e) {
+      console.error(e);
+    }
+
   }
 
 }
 
-export default Image;
+export default ImageModel;

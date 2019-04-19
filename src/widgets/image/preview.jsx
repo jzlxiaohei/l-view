@@ -22,7 +22,7 @@ class Image extends React.Component {
           height: style.height,
         }}
         draggable={false}
-        alt=""
+        alt="err"
       />
     )
   }
