@@ -1,11 +1,22 @@
 const webpack = require('webpack');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const path = require("path");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin"); // for prod
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'); // for prod
 
+const devMode = process.env.NODE_ENV !== 'production';
 
-const devMode = process.env.NODE_ENV !== 'production'
+const devPlugins = [new webpack.HotModuleReplacementPlugin()];
+
+const prodPlugins = [
+  new OptimizeCSSAssetsPlugin({
+    cssProcessorOptions: {
+      safe: true,
+    },
+  }),
+];
+
+const plugins = devMode ? devPlugins : prodPlugins;
 
 const resolvePath = _path => {
   return path.resolve(__dirname, _path);
@@ -16,13 +27,10 @@ const DIST_PATH = resolvePath('../dist');
 const port = 4444;
 
 const config = {
-  mode: 'development',
+  mode: devMode ? 'development' : 'production',
   entry: {
-    app: "./src/index.jsx",
-    vendor: [
-      'react',
-      'react-dom',
-    ],
+    app: './src/index.jsx',
+    vendor: ['react', 'react-dom'],
   },
   output: {
     filename: 'js/[name].[hash].js',
@@ -38,11 +46,11 @@ const config = {
       {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
-        include: path.resolve(__dirname, "../src"),
+        include: path.resolve(__dirname, '../src'),
         options: {
           cacheDirectory: true,
-          highlightCode: true
-        }
+          highlightCode: true,
+        },
       },
       {
         test: /\.css$/,
@@ -50,7 +58,7 @@ const config = {
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           {
-            loader: 'postcss-loader'
+            loader: 'postcss-loader',
           },
         ],
       },
@@ -60,21 +68,20 @@ const config = {
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           {
-            loader: 'postcss-loader'
+            loader: 'postcss-loader',
           },
           {
             loader: 'less-loader',
-            options: { javascriptEnabled: true }
-          }
+            options: { javascriptEnabled: true },
+          },
         ],
-      }
+      },
     ],
   },
   resolve: {
     extensions: ['.js', '.json', '.jsx'],
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
       template: './public/index.html',
@@ -86,7 +93,7 @@ const config = {
     new webpack.DefinePlugin({
       __IS_DEV__: JSON.stringify(process.env.NODE_ENV !== 'production'),
     }),
-  ],
+  ].concat(plugins),
   devServer: {
     host: '0.0.0.0',
     port,
@@ -97,20 +104,16 @@ const config = {
     disableHostCheck: true,
     historyApiFallback: true,
     // quiet: true,
-    open:true,
+    open: true,
     clientLogLevel: 'none',
     overlay: true,
     stats: 'minimal',
     watchOptions: {
-      ignored: [
-        resolvePath('../dist'),
-        resolvePath('../node_modules'),
-      ],
+      ignored: [resolvePath('../dist'), resolvePath('../node_modules')],
     },
   },
 };
 
 // const origin = `http://0.0.0.0:${port}`;
-
 
 module.exports = config;
