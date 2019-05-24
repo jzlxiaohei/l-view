@@ -5,6 +5,7 @@ class Container extends BaseModel {
   AllowedChildrenTypes = [
     WidgetTypes.Text,
     WidgetTypes.Image,
+    WidgetTypes.Button,
   ]
 }
 

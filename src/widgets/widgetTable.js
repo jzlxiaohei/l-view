@@ -2,6 +2,7 @@ import Container from './container';
 import Text from './text';
 import Image from './image';
 import Carousel from './carousel';
+import Button from './button';
 import _ from 'lodash';
 
 const WidgetMeta = {
@@ -9,6 +10,7 @@ const WidgetMeta = {
   Text,
   Image,
   Carousel,
+  Button,
 }
 
 export const WidgetTypes = _.mapValues(

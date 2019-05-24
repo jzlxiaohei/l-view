@@ -28,7 +28,6 @@ class ImageModel extends BaseModel{
 
   constructor() {
     super();
-    // this.getImageMeta = _getImageMeta || getImageMeta;
     this.init();
   }
 
