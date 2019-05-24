@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import PropEditor from 'comps/prop-editor';
-import ImageModel from './Model';
+import ImageModel from './model';
 import { FormInput } from 'comps/form-item';
 import { Button } from 'antd';
 

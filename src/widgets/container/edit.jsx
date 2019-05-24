@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import PropEditor from 'comps/prop-editor';
 import ChildrenEditor from 'comps/children-editor';
 
-import ContainerModel from './Model';
+import ContainerModel from './model';
 
 @observer
 class ContainerEditor extends React.Component {

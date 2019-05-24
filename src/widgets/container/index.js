@@ -1,6 +1,6 @@
 import Preview from './preview';
 import Edit from './edit';
-import Model from './Model';
+import Model from './model';
 
 export default {
   Preview,

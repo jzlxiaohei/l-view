@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import PropEditor from 'comps/prop-editor';
 import ChildrenEditor from 'comps/children-editor';
 
-import CarouselModel from './Model';
+import CarouselModel from './model';
 
 @observer
 class CarouselEdit extends React.Component {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import PropEditor from 'comps/prop-editor';
-import ButtonModel from './Model';
+import ButtonModel from './model';
 
 
 @observer

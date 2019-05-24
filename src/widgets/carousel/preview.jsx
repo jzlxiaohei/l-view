@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import preview from '@/hoc/preview';
 import { Carousel } from 'antd-mobile';
-import CarouselModel from './Model';
+import CarouselModel from './model';
 import { observer } from 'mobx-react';
 
 @preview

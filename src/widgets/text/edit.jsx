@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import TextModel from './Model';
+import TextModel from './model';
 import PropEditor from 'comps/prop-editor';
 import DraftEditor from './comps/draft';
 import './edit.less';
