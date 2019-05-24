@@ -47,6 +47,7 @@ class Tree extends Component {
       <SortableTree
         onVisibilityToggle={this.handleVisibilityToggle}
         treeData={treeData}
+        isVirtualized={false}
         onChange={_.noop}
         theme={FullNodeTheme}
         generateNodeProps={rowInfo => {
