@@ -24,6 +24,7 @@ class DesignPage extends React.Component {
     window.$model = this.designModel;
     this.designModel.pushByType(WidgetTypes.Image);
     this.designModel.pushByType(WidgetTypes.Text);
+    this.designModel.pushByType(WidgetTypes.Button);
 
     const carouselModel = widgetTable.createModel(WidgetTypes.Carousel);
     carouselModel.push([
