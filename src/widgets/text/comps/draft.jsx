@@ -2,22 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Editor, EditorState, RichUtils, Modifier } from 'draft-js';
 import 'draft-js/dist/Draft.css';
-import BlockStyleControls from './_BlockStyleControls';
-import InlineStyleControls from './_InlineStyleControls';
-import _ from 'lodash';
-
 import { Tooltip } from 'antd';
 import { SketchPicker } from 'react-color';
-
-// Custom overrides for "code" style.
-const styleMap = {
-  CODE: {
-    backgroundColor: 'rgba(0, 0, 0, 0.05)',
-    fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
-    fontSize: 16,
-    padding: 2,
-  },
-};
+import BlockStyleControls from './_BlockStyleControls';
+import InlineStyleControls from './_InlineStyleControls';
+import { buildColorStr, parseColor } from '../color-util';
 
 function getBlockStyle(block) {
   switch (block.getType()) {
@@ -76,19 +65,18 @@ class DraftTextEditor extends React.Component {
 
   customStyleFn = (style, block) => {
     const styleTextList = style.toJS();
-    let lastStyleText = null
+    let lastStyle = null
     styleTextList.forEach((text) => {
-      const colorExecResult = /color: (\S+)/.exec(text);
-      if(colorExecResult) {
-        const colorText = colorExecResult[0];
-        style.remove(colorText);
-        lastStyleText = {
-          color: colorExecResult[1],
+      const colorMeta = parseColor(text);
+      if(colorMeta) {
+        const { color } = colorMeta;
+        lastStyle = {
+          color,
         };
       }
     })
-    if(lastStyleText) {
-      return lastStyleText;
+    if(lastStyle) {
+      return lastStyle;
     }
   }
 
@@ -100,7 +88,7 @@ class DraftTextEditor extends React.Component {
     this.onChange(
       RichUtils.toggleInlineStyle(
         this.props.editorState,
-        `color: ${color.hex}`,
+        buildColorStr(color.hex)
       )
     );
   }
@@ -143,7 +131,6 @@ class DraftTextEditor extends React.Component {
             editorState={editorState}
             onChange={this.onChange}
             blockStyleFn={getBlockStyle}
-            customStyleMap={styleMap}
             handleKeyCommand={this.handleKeyCommand}
             placeholder="Some text..."
             ref={this.draftRef}
