@@ -6,6 +6,7 @@ class Container extends BaseModel {
     WidgetTypes.Text,
     WidgetTypes.Image,
     WidgetTypes.Button,
+    WidgetTypes.Carousel
   ]
 }
 
