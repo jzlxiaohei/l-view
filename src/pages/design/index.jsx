@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import DesignModel from './DesignModel';
 import { WidgetTypes, widgetTable } from '@/widgets/widgetTable';
 import WidgetTreeView from './WidgetTreeView';
-
+import { Button } from 'antd';
 import './style.less';
 import { action, observable } from 'mobx';
 
@@ -21,7 +21,7 @@ class DesignPage extends React.Component {
   @action
   init() {
     this.designModel = new DesignModel();
-    window.$model = this.designModel;
+    window.$model = this.designModel; // just for debug now
     this.designModel.pushByType(WidgetTypes.Image);
     this.designModel.pushByType(WidgetTypes.Text);
     this.designModel.pushByType(WidgetTypes.Button);
@@ -57,11 +57,18 @@ class DesignPage extends React.Component {
     }
   }
 
+  handleShowJSON = () => {
+    console.log(this.designModel.getJSON())
+  }
+
   render() {
     const root = this.designModel.rootModel;
     const selectedModel = this.selectedModel;
     return (
       <div className="page-design">
+        <div>
+          <Button type="primary" onClick={this.handleShowJSON}>Console JSON</Button>
+        </div>
         <div id="design-root">
           <div className="tree-view-area">
             <WidgetTreeView
