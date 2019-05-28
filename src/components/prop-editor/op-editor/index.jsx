@@ -18,15 +18,6 @@ class CompOperationEditor extends React.Component {
       <div className="op-editor">
         <FormCheckbox className="half" model={model} path="resizable" label="是否可缩放" />
         <FormCheckbox className="quarter" model={model} path="draggable" label="是否可拖拽" />
-        {
-          model.draggable ?
-            <FormCheckbox
-              className="quarter"
-              model={model}
-              path="isAbsolute"
-              label="不保持原位置"
-            /> : null
-        }
       </div>
     );
   }

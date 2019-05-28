@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import hoistNonReactStatic from 'hoist-non-react-statics';
 import _ from 'lodash';
 import cns from 'classnames';
+import { observe } from 'mobx';
 import './style.less';
 
 export default function previewHoc(OriginComponent) {
@@ -33,13 +34,22 @@ export default function previewHoc(OriginComponent) {
       };
     }
 
-    initDrag() {
-      const { top, left } = this.getRect();
-      this.props.model.assignStyle({
-        top,
-        left,
-      });
+    componentDidMount() {
+      observe(this.props.model, 'draggable', change => {
+        const { oldValue, newValue } = change;
+        if(oldValue === false && newValue === true) {
+          const rect = this.getRect();
+          this.props.model.assignStyle(rect)
+        }
+        if(oldValue === true && newValue === false) {
+          this.props.model.assignStyle({
+            top: '$d',
+            left: '$d',
+          })
+        }
+      })
     }
+
 
     handelMouseDownForDrag = e => {
       const model = this.props.model;
@@ -146,7 +156,7 @@ export default function previewHoc(OriginComponent) {
         left: style.left,
         zIndex: style.zIndex,
       };
-      if(model.isAbsolute) {
+      if(model.draggable) {
         wrapperStyle.position = 'absolute';
       }
       // if (style.position === 'absolute') {

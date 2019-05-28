@@ -3,8 +3,8 @@ import _ from 'lodash';
 
 class BaseModel {
 
+  // `draggable: true` means `position: absolute`, and can be dragged by user
   @observable draggable = false;
-  @observable isAbsolute =  false;
   @observable resizable = true;
   @observable selected = false;
   @observable expanded = false;
@@ -50,14 +50,22 @@ class BaseModel {
   @action
   assignAttr(attr) {
     _.forOwn(attr, (value, key) => {
-      this.attr[key] = value;
+      if(value === '$d') {
+        delete this.attr[key];
+      } else {
+        this.attr[key] = value;
+      }
     })
   }
 
   @action
   assignStyle(style) {
     _.forOwn(style, (value, key) => {
-      this.style[key] = value;
+      if(value === '$d') {
+        delete this.style[key];
+      } else {
+        this.style[key] = value;
+      }
     })
   }
 
