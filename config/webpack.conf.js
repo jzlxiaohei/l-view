@@ -76,6 +76,15 @@ const config = {
           },
         ],
       },
+      {
+        test: /\.(png|jpe?g|gif|woff(2)?|ttf|eot|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {},
+          },
+        ],
+      },
     ],
   },
   resolve: {
