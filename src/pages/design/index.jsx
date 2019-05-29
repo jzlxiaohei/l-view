@@ -39,14 +39,15 @@ class DesignPage extends React.Component {
   }
 
   @action.bound
-  handlePreviewSelect(model) {
+  handlePreviewSelect(model, modelAutoExpanded = true) {
     if (this.selectedModel) {
       this.selectedModel.setSelected(false);
-      model.setExpanded(false);
     }
     this.selectedModel = model;
     model.setSelected(true);
-    model.setExpanded(true);
+    if(modelAutoExpanded) {
+      model.setExpanded(true);
+    }
     let parent = model.$parent;
     while (parent) {
       parent.setExpanded(true);
