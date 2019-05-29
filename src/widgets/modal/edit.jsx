@@ -28,7 +28,7 @@ class ContainerEditor extends React.Component {
       <div className="widget-edit-modal">
         <PropEditor
           model={model}
-          renderAfterBasicInfo={() => this.renderModalEditor(model)} />}
+          renderAfterBasicInfo={() => this.renderModalEditor(model)}
         />
       </div>
     )
