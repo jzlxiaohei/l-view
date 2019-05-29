@@ -8,7 +8,8 @@ import preview from '@/hoc/preview';
 class Button extends React.Component {
 
   static propTypes = {
-    text: PropTypes.string.isRequired,
+    style: PropTypes.object.isRequired,
+    attr: PropTypes.object.isRequired,
   }
 
   render() {
