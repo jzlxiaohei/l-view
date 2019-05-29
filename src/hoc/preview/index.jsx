@@ -37,19 +37,18 @@ export default function previewHoc(OriginComponent) {
     componentDidMount() {
       observe(this.props.model, 'draggable', change => {
         const { oldValue, newValue } = change;
-        if(oldValue === false && newValue === true) {
+        if (oldValue === false && newValue === true) {
           const rect = this.getRect();
-          this.props.model.assignStyle(rect)
+          this.props.model.assignStyle(rect);
         }
-        if(oldValue === true && newValue === false) {
+        if (oldValue === true && newValue === false) {
           this.props.model.assignStyle({
             top: '$d',
             left: '$d',
-          })
+          });
         }
-      })
+      });
     }
-
 
     handelMouseDownForDrag = e => {
       const model = this.props.model;
@@ -156,7 +155,7 @@ export default function previewHoc(OriginComponent) {
         left: style.left,
         zIndex: style.zIndex,
       };
-      if(model.draggable) {
+      if (model.draggable) {
         wrapperStyle.position = 'absolute';
       }
       // if (style.position === 'absolute') {
@@ -173,7 +172,7 @@ export default function previewHoc(OriginComponent) {
         return model.children.map((ch, index) => {
           return (
             <ch.$Preview
-              key={ch.id}
+              key={index}
               model={ch}
               onSelect={this.props.onSelect}
             />
@@ -190,7 +189,22 @@ export default function previewHoc(OriginComponent) {
         selected: model.selected,
         [this.props.className]: !!this.props.className,
       });
-
+      const OriginElement = (
+        <OriginComponent
+          model={model}
+          style={{
+            ...style,
+          }}
+          attr={{
+            ...attr,
+          }}
+        >
+          {this.renderChildren(model)}
+        </OriginComponent>
+      );
+      if(OriginComponent.NoWrapper) {
+        return OriginElement
+      }
       return (
         <div
           className={wrapperClassName}
@@ -200,17 +214,7 @@ export default function previewHoc(OriginComponent) {
           onMouseDown={this.handelMouseDownForDrag}
           style={this.getWrapperStyle()}
         >
-          <OriginComponent
-            model={model}
-            style={{
-              ...style,
-            }}
-            attr={{
-              ...attr,
-            }}
-          >
-            {this.renderChildren(model)}
-          </OriginComponent>
+          {OriginElement}
           {this.renderDragPoints()}
         </div>
       );
