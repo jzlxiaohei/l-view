@@ -67,7 +67,7 @@ class DesignPage extends React.Component {
     const selectedModel = this.selectedModel;
     return (
       <div className="page-design">
-        <div>
+        <div className="design-action-bar">
           <Button type="primary" onClick={this.handleShowJSON}>Console JSON</Button>
         </div>
         <div id="design-root">

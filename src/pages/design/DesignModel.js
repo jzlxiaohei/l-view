@@ -17,6 +17,7 @@ class DesignModel {
     this.rootModel.assignAttr({
       id: 'root-widget',
     })
+    this.rootModel.AllowedChildrenTypes.push(WidgetTypes.Modal)
   }
 
   pushByType(type) {

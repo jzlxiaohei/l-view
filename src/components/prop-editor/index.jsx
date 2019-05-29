@@ -21,7 +21,7 @@ class PropEditor extends React.Component {
     return (
       <div className="comp-prop-editor">
         <Tag color="blue">{model.$type}</Tag>
-        <FormInput model={model} path="attr.id" label="ID"/>
+        <FormInput model={model} path="attr.id" label="ID" disabled={model.idLock}/>
         <Divider />
         {
           this.props.renderAfterBasicInfo && (

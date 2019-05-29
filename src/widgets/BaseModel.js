@@ -84,11 +84,6 @@ class BaseModel {
     }
   }
 
-  @action
-  remove(child) {
-    _.remove(child);
-  }
-
   getJSON() {
     const json = {
       style: toJS(this.style),

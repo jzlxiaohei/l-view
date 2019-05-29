@@ -1,0 +1,19 @@
+.preview-widget-modal-cover {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .6);
+  padding: 20px;
+  z-index: 100;
+  &.visible {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.preview-widget-modal {
+  width: 375px;
+}

@@ -3,6 +3,7 @@ import Text from './text';
 import Image from './image';
 import Carousel from './carousel';
 import Button from './button';
+import Modal from './modal';
 import _ from 'lodash';
 import { action } from 'mobx';
 
@@ -12,6 +13,7 @@ const WidgetMeta = {
   Image,
   Carousel,
   Button,
+  Modal,
 }
 
 export const WidgetTypes = _.mapValues(
@@ -25,7 +27,9 @@ function checkWidgetType(type) {
   }
 }
 
-let idIndex = 0;
+let modalAttrIdIndex = 0;
+
+const modalIdSet = new Set();
 
 export const widgetTable = {
   getPreview(type) {
@@ -41,10 +45,17 @@ export const widgetTable = {
   createModel(type) {
     checkWidgetType(type);
     const widgetModel = new WidgetMeta[type].Model();
-    widgetModel.id = `${type}_${idIndex++}`
     widgetModel.$type = type;
     widgetModel.$Preview = widgetTable.getPreview(type);
     widgetModel.$Edit =  widgetTable.getEdit(type);
+    // TODO: emit createModel ?
+    if(type === WidgetTypes.Modal) {
+      const id = `${type}_${modalAttrIdIndex++}`
+      widgetModel.assignAttr({
+        id,
+      });
+      modalIdSet.add(id);
+    }
     return widgetModel;
   },
 
@@ -54,6 +65,11 @@ export const widgetTable = {
       const index = children.indexOf(model);
       if(index !== -1) {
         children.splice(index, 1);
+        // TODO: removeModel?
+        if(model.$type === WidgetTypes.Modal) {
+          const id = model.attr.id;
+          modalIdSet.delete(id);
+        }
       }
     }
   })
