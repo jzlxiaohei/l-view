@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import hoistNonReactStatic from 'hoist-non-react-statics';
-import _ from 'lodash';
+// import _ from 'lodash';
 import cns from 'classnames';
 import { observe } from 'mobx';
 import './style.less';
@@ -173,7 +173,7 @@ export default function previewHoc(OriginComponent) {
         return model.children.map((ch, index) => {
           return (
             <ch.$Preview
-              key={index}
+              key={ch.id}
               model={ch}
               onSelect={this.props.onSelect}
             />

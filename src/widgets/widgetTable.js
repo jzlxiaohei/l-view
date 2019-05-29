@@ -4,6 +4,7 @@ import Image from './image';
 import Carousel from './carousel';
 import Button from './button';
 import _ from 'lodash';
+import { action } from 'mobx';
 
 const WidgetMeta = {
   Container,
@@ -24,6 +25,8 @@ function checkWidgetType(type) {
   }
 }
 
+let idIndex = 0;
+
 export const widgetTable = {
   getPreview(type) {
     checkWidgetType(type);
@@ -38,9 +41,20 @@ export const widgetTable = {
   createModel(type) {
     checkWidgetType(type);
     const widgetModel = new WidgetMeta[type].Model();
+    widgetModel.id = `${type}_${idIndex++}`
     widgetModel.$type = type;
     widgetModel.$Preview = widgetTable.getPreview(type);
     widgetModel.$Edit =  widgetTable.getEdit(type);
     return widgetModel;
-  }
+  },
+
+  removeModel: action((model) => {
+    if(model.$parent) {
+      const children = model.$parent.children;
+      const index = children.indexOf(model);
+      if(index !== -1) {
+        children.splice(index, 1);
+      }
+    }
+  })
 }
