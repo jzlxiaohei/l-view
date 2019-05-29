@@ -80,7 +80,6 @@ class Tree extends Component {
   render() {
     const model = this.props.model;
     const treeData = getTreeData(model, { isRoot: true });
-    console.log(treeData);
     return (
       <SortableTree
         canDrop={this.canDrop}
