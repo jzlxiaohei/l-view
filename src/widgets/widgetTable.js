@@ -31,7 +31,24 @@ let modalAttrIdIndex = 0;
 
 const modalIdSet = new Set();
 
+function getAllEventTypesConfig() {
+  const result = {};
+  Object.keys(WidgetMeta).forEach(widgetKey => {
+    const typeConfig = WidgetMeta[widgetKey].Model.EventTypesConfig;
+    _.forOwn(typeConfig, (value, key) => {
+      if (key in result) {
+        throw new Error(`duplicated event type: ${key}`);
+      }
+      result[key] = value;
+    })
+  })
+  return result;
+}
+
+export const WidgetEventTypes = getAllEventTypesConfig();
+
 export const widgetTable = {
+
   getPreview(type) {
     checkWidgetType(type);
     return WidgetMeta[type].Preview;

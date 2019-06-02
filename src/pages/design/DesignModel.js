@@ -14,6 +14,7 @@ class DesignModel {
     this.rootModel = widgetTable.createModel(type);
     this.rootModel.setDraggable(false);
     this.rootModel.setResizable(false);
+    this.rootModel.setExpanded(true);
     this.rootModel.assignAttr({
       id: 'root-widget',
     })

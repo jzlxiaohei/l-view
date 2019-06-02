@@ -10,11 +10,11 @@
   "dependencies": {
     "@babel/runtime": "^7.1.5",
     "@reach/router": "^1.2.1",
-    "antd": "^3.10.9",
+    "antd": "^3.19.1",
     "classnames": "^2.2.6",
     "draft-convert": "^2.1.4",
     "draft-js": "^0.10.5",
-    "eventemitter3": "^3.1.0",
+    "eventemitter3": "^3.1.2",
     "lodash": "^4.17.11",
     "mobx": "^5.6.0",
     "mobx-react": "^5.3.6",
@@ -23,6 +23,7 @@
     "react-dom": "^16.6.3",
     "react-sortable-tree": "^2.6.0",
     "react-sortable-tree-theme-full-node-drag": "^1.1.0",
+    "shortid": "^2.2.14",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {

@@ -18,6 +18,7 @@ class ContainerEditor extends React.Component {
     return (
       <React.Fragment>
         <FormCheckbox label="visible" model={model} path="attr.visible" />
+        <ChildrenEditor model={model} />
       </React.Fragment>
     )
   }

@@ -7,7 +7,10 @@ import WidgetTreeView from './WidgetTreeView';
 import { Button } from 'antd';
 import './style.less';
 import { action, observable } from 'mobx';
+import EventSystem from '@/event-system';
 
+const singleEventSystem = new EventSystem();
+window.singleEventSystem = singleEventSystem;
 @observer
 class DesignPage extends React.Component {
   @observable
@@ -35,6 +38,12 @@ class DesignPage extends React.Component {
 
     this.designModel.push(carouselModel);
 
+    const modalModel = widgetTable.createModel(WidgetTypes.Modal)
+    modalModel.assignAttr({
+      visible: false,
+    })
+    this.designModel.push(modalModel);
+
     this.selectedModel = this.designModel.rootModel;
   }
 
@@ -45,13 +54,13 @@ class DesignPage extends React.Component {
     }
     this.selectedModel = model;
     model.setSelected(true);
-    if(modelAutoExpanded) {
+    if (modelAutoExpanded) {
       model.setExpanded(true);
     }
     let parent = model.$parent;
     while (parent) {
       parent.setExpanded(true);
-      if(parent.onChildSelect) {
+      if (parent.onChildSelect) {
         parent.onChildSelect(model);
       }
       parent = parent.$parent;
@@ -59,8 +68,8 @@ class DesignPage extends React.Component {
   }
 
   handleShowJSON = () => {
-    console.log(this.designModel.getJSON())
-  }
+    console.log(this.designModel.getJSON());
+  };
 
   render() {
     const root = this.designModel.rootModel;
@@ -68,7 +77,9 @@ class DesignPage extends React.Component {
     return (
       <div className="page-design">
         <div className="design-action-bar">
-          <Button type="primary" onClick={this.handleShowJSON}>Console JSON</Button>
+          <Button type="primary" onClick={this.handleShowJSON}>
+            Console JSON
+          </Button>
         </div>
         <div id="design-root">
           <div className="tree-view-area">
@@ -80,7 +91,11 @@ class DesignPage extends React.Component {
           </div>
           <div className="preview-area">
             <div className="simulator">
-              <root.$Preview model={root} onSelect={this.handlePreviewSelect} />
+              <root.$Preview
+                model={root}
+                onSelect={this.handlePreviewSelect}
+                eventSystem={singleEventSystem}
+              />
             </div>
           </div>
           <div className="edit-area">

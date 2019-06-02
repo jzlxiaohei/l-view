@@ -14,6 +14,11 @@ export default function previewHoc(OriginComponent) {
       model: PropTypes.object.isRequired,
       onSelect: PropTypes.func.isRequired,
       className: PropTypes.string,
+      eventSystem: PropTypes.shape({
+        on: PropTypes.func.isRequired,
+        off: PropTypes.func.isRequired,
+        emit: PropTypes.func.isRequired,
+      })
     };
 
     constructor(props) {
@@ -175,6 +180,7 @@ export default function previewHoc(OriginComponent) {
               key={index}
               model={ch}
               onSelect={this.props.onSelect}
+              eventSystem={this.props.eventSystem}
             />
           );
         });
@@ -198,6 +204,7 @@ export default function previewHoc(OriginComponent) {
           attr={{
             ...attr,
           }}
+          eventSystem={this.props.eventSystem}
         >
           {this.renderChildren(model)}
         </OriginComponent>
