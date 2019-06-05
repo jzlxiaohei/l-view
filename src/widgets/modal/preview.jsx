@@ -42,6 +42,7 @@ class Container extends React.Component {
     //     visible: false,
     //   });
     // }
+    this.props.onClick(e);
   };
 
   render() {

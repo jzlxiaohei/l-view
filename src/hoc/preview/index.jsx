@@ -205,6 +205,7 @@ export default function previewHoc(OriginComponent) {
             ...attr,
           }}
           eventSystem={this.props.eventSystem}
+          onClick={this.handleClick}
         >
           {this.renderChildren(model)}
         </OriginComponent>
