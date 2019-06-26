@@ -35,7 +35,7 @@ const config = {
   output: {
     filename: 'js/[name].[hash].js',
     chunkFilename: 'js/[name].[hash].js',
-    publicPath: '/',
+    publicPath: '/l-view/dist/',
     path: DIST_PATH,
   },
   externals: {
