@@ -15,7 +15,7 @@
     "draft-convert": "^2.1.4",
     "draft-js": "^0.10.5",
     "eventemitter3": "^3.1.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "mobx": "^5.6.0",
     "mobx-react": "^5.3.6",
     "react": "^16.6.3",
